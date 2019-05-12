@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Listening to scroll - moving background and changing color</title>
+</head>
+
+<body>
+    <script>
+        let changDirection = true;
+        let size = 100;
+
+
+        document.body.style.height = "10000px";
+        const div = document.createElement("div");
+        document.body.appendChild(div);
+
+
+        div.style.width = "100%";
+        div.style.height = size + "px";
+        div.style.position = "fixed";
+        div.style.left = "0";
+        div.style.top = "0";
+        div.style.backgroundColor = "green";
+
+        function changeHeight() {
+            let windowHeight = window.innerHeight / 2;
+
+
+            if (size > windowHeight) {
+                changDirection = !changDirection;
+                div.style.backgroundColor = "red";
+            } else if (size <= 0) {
+                changDirection = !changDirection;
+                div.style.backgroundColor = "green";
+            }
+
+            if (changDirection) {
+                size += 10;
+            } else {
+                size -= 10;
+            }
+            div.style.height = size + "px";
+        }
+
+        changeHeight();
+        let scroll = window.addEventListener("scroll", changeHeight);
+    </script>
+</body>
+
+</html>
